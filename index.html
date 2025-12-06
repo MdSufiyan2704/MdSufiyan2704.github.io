@@ -1,0 +1,1155 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MOHAMMED SUFIYAN S - Machine Learning Engineer</title>
+    <meta name="description" content="Portfolio of MOHAMMED SUFIYAN S - Computer Science Engineer specializing in Machine Learning, Computer Vision, and Full-Stack Development">
+    <meta name="keywords" content="Machine Learning, Computer Vision, Python, Deep Learning, Portfolio">
+    <meta name="author" content="MOHAMMED SUFIYAN S">
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- AOS Animation Library -->
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    
+    <!-- Custom Tailwind Config -->
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#3B82F6',
+                        secondary: '#10B981',
+                        accent: '#06B6D4',
+                        dark: '#0F172A',
+                    },
+                    animation: {
+                        'float': 'float 6s ease-in-out infinite',
+                        'gradient': 'gradient 8s ease infinite',
+                        'pulse-slow': 'pulse 3s ease-in-out infinite',
+                        'slide-in-left': 'slideInLeft 0.5s ease-out',
+                        'slide-in-right': 'slideInRight 0.5s ease-out',
+                        'typing': 'typing 3.5s steps(40, end)',
+                        'blink': 'blink 0.75s step-end infinite',
+                    },
+                    keyframes: {
+                        float: {
+                            '0%, 100%': { transform: 'translateY(0px)' },
+                            '50%': { transform: 'translateY(-20px)' },
+                        },
+                        gradient: {
+                            '0%, 100%': { backgroundPosition: '0% 50%' },
+                            '50%': { backgroundPosition: '100% 50%' },
+                        },
+                        slideInLeft: {
+                            '0%': { transform: 'translateX(-100%)', opacity: '0' },
+                            '100%': { transform: 'translateX(0)', opacity: '1' },
+                        },
+                        slideInRight: {
+                            '0%': { transform: 'translateX(100%)', opacity: '0' },
+                            '100%': { transform: 'translateX(0)', opacity: '1' },
+                        },
+                        typing: {
+                            '0%': { width: '0' },
+                            '100%': { width: '100%' },
+                        },
+                        blink: {
+                            '0%, 50%': { borderColor: 'transparent' },
+                            '50%, 100%': { borderColor: 'white' },
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    
+    <style>
+        /* Custom Styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            overflow-x: hidden;
+            cursor: none;
+        }
+        
+        /* Custom Cursor */
+        .cursor {
+            width: 20px;
+            height: 20px;
+            border: 2px solid #3B82F6;
+            border-radius: 50%;
+            position: fixed;
+            pointer-events: none;
+            transition: all 0.1s ease;
+            z-index: 9999;
+            mix-blend-mode: difference;
+        }
+        
+        .cursor-follower {
+            width: 40px;
+            height: 40px;
+            background: rgba(59, 130, 246, 0.1);
+            border-radius: 50%;
+            position: fixed;
+            pointer-events: none;
+            transition: all 0.3s ease;
+            z-index: 9998;
+        }
+        
+        .cursor.hover {
+            transform: scale(2);
+            background: rgba(59, 130, 246, 0.3);
+        }
+        
+        /* Animated Background */
+        .animated-bg {
+            background: linear-gradient(-45deg, #1e40af, #3b82f6, #06b6d4, #10b981);
+            background-size: 400% 400%;
+            animation: gradient 15s ease infinite;
+        }
+        
+        /* Glassmorphism Effect */
+        .glass {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+        
+        .glass-dark {
+            background: rgba(0, 0, 0, 0.1);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        
+        /* Typing Effect */
+        .typing-effect {
+            overflow: hidden;
+            border-right: 3px solid white;
+            white-space: nowrap;
+            animation: typing 3.5s steps(40, end), blink 0.75s step-end infinite;
+        }
+        
+        /* Particle Background */
+        #particles-js {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+            z-index: -1;
+        }
+        
+        /* Skill Cards 3D Tilt Effect */
+        .skill-card {
+            transform-style: preserve-3d;
+            transition: transform 0.1s ease-out;
+            will-change: transform;
+        }
+        
+        .skill-card-inner {
+            transform: translateZ(50px);
+            transition: transform 0.1s ease-out;
+        }
+        
+        /* Project Cards Flip Effect */
+        .project-card {
+            perspective: 1000px;
+        }
+        
+        .project-card-inner {
+            transition: transform 0.8s;
+            transform-style: preserve-3d;
+        }
+        
+        .project-card:hover .project-card-inner {
+            transform: rotateY(5deg);
+        }
+        
+        /* Timeline Animation */
+        .timeline-line {
+            background: linear-gradient(180deg, #3B82F6, #10B981);
+            animation: gradient 3s ease infinite;
+        }
+        
+        /* Floating Elements */
+        .floating {
+            animation: float 6s ease-in-out infinite;
+        }
+        
+        .floating-delay-1 {
+            animation-delay: 1s;
+        }
+        
+        .floating-delay-2 {
+            animation-delay: 2s;
+        }
+        
+        /* Progress Bar Animation */
+        .progress-fill {
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .progress-fill::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            bottom: 0;
+            right: 0;
+            background: linear-gradient(
+                90deg,
+                transparent,
+                rgba(255, 255, 255, 0.3),
+                transparent
+            );
+            animation: shimmer 2s infinite;
+        }
+        
+        @keyframes shimmer {
+            0% { transform: translateX(-100%); }
+            100% { transform: translateX(100%); }
+        }
+        
+        /* Navigation Progress Bar */
+        .nav-progress {
+            position: fixed;
+            top: 0;
+            left: 0;
+            height: 3px;
+            background: linear-gradient(90deg, #3B82F6, #10B981);
+            z-index: 9999;
+            transition: width 0.3s ease;
+        }
+        
+        /* Text Gradient */
+        .text-gradient {
+            background: linear-gradient(135deg, #3B82F6 0%, #10B981 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        
+        /* Glow Effect */
+        .glow {
+            box-shadow: 0 0 20px rgba(59, 130, 246, 0.5);
+        }
+        
+        .glow-hover:hover {
+            box-shadow: 0 0 30px rgba(59, 130, 246, 0.8);
+        }
+        
+        /* Loading Screen */
+        .loader {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: #0F172A;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 10000;
+            transition: opacity 0.5s ease;
+        }
+        
+        .loader.hidden {
+            opacity: 0;
+            pointer-events: none;
+        }
+        
+        .loader-circle {
+            width: 50px;
+            height: 50px;
+            border: 3px solid transparent;
+            border-top-color: #3B82F6;
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+        }
+        
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+    </style>
+</head>
+<body class="bg-gray-900 text-white font-sans">
+    <!-- Loading Screen -->
+    <div class="loader" id="loader">
+        <div class="loader-circle"></div>
+    </div>
+    
+    <!-- Custom Cursor -->
+    <div class="cursor" id="cursor"></div>
+    <div class="cursor-follower" id="cursor-follower"></div>
+    
+    <!-- Navigation Progress Bar -->
+    <div class="nav-progress" id="nav-progress"></div>
+    
+    <!-- Navigation -->
+    <nav class="fixed top-0 w-full glass-dark z-50 transition-all duration-300" id="navbar">
+        <div class="container mx-auto px-6 py-4">
+            <div class="flex justify-between items-center">
+                <div class="text-2xl font-bold text-gradient">
+                    <span class="cursor-pointer" onclick="scrollToSection('home')">MS</span>
+                </div>
+                
+                <!-- Desktop Menu -->
+                <div class="hidden lg:flex space-x-8">
+                    <a href="#home" class="nav-link hover:text-primary transition-all duration-300 relative group">
+                        Home
+                        <span class="absolute bottom-0 left-0 w-0 h-0.5 bg-primary transition-all duration-300 group-hover:w-full"></span>
+                    </a>
+                    <a href="#about" class="nav-link hover:text-primary transition-all duration-300 relative group">
+                        About
+                        <span class="absolute bottom-0 left-0 w-0 h-0.5 bg-primary transition-all duration-300 group-hover:w-full"></span>
+                    </a>
+                    <a href="#skills" class="nav-link hover:text-primary transition-all duration-300 relative group">
+                        Skills
+                        <span class="absolute bottom-0 left-0 w-0 h-0.5 bg-primary transition-all duration-300 group-hover:w-full"></span>
+                    </a>
+                    <a href="#projects" class="nav-link hover:text-primary transition-all duration-300 relative group">
+                        Projects
+                        <span class="absolute bottom-0 left-0 w-0 h-0.5 bg-primary transition-all duration-300 group-hover:w-full"></span>
+                    </a>
+                    <a href="#experience" class="nav-link hover:text-primary transition-all duration-300 relative group">
+                        Experience
+                        <span class="absolute bottom-0 left-0 w-0 h-0.5 bg-primary transition-all duration-300 group-hover:w-full"></span>
+                    </a>
+                    <a href="#contact" class="nav-link hover:text-primary transition-all duration-300 relative group">
+                        Contact
+                        <span class="absolute bottom-0 left-0 w-0 h-0.5 bg-primary transition-all duration-300 group-hover:w-full"></span>
+                    </a>
+                </div>
+                
+                <div class="flex items-center space-x-4">
+                    <!-- Dark Mode Toggle -->
+                    <button id="dark-mode-toggle" class="p-2 rounded-full hover:bg-white/10 transition-all duration-300">
+                        <i class="fas fa-moon"></i>
+                    </button>
+                    
+                    <!-- Mobile Menu Toggle -->
+                    <button id="mobile-menu-toggle" class="lg:hidden p-2 rounded-full hover:bg-white/10 transition-all duration-300">
+                        <i class="fas fa-bars"></i>
+                    </button>
+                </div>
+            </div>
+            
+            <!-- Mobile Menu -->
+            <div id="mobile-menu" class="hidden lg:hidden mt-4 pb-4">
+                <a href="#home" class="block py-2 hover:text-primary transition-colors">Home</a>
+                <a href="#about" class="block py-2 hover:text-primary transition-colors">About</a>
+                <a href="#skills" class="block py-2 hover:text-primary transition-colors">Skills</a>
+                <a href="#projects" class="block py-2 hover:text-primary transition-colors">Projects</a>
+                <a href="#experience" class="block py-2 hover:text-primary transition-colors">Experience</a>
+                <a href="#contact" class="block py-2 hover:text-primary transition-colors">Contact</a>
+            </div>
+        </div>
+    </nav>
+    
+    <!-- Hero Section -->
+    <section id="home" class="min-h-screen flex items-center justify-center relative overflow-hidden animated-bg">
+        <div id="particles-js"></div>
+        
+        <!-- Floating Elements -->
+        <div class="absolute top-20 left-10 w-20 h-20 bg-primary/20 rounded-full floating"></div>
+        <div class="absolute top-40 right-20 w-32 h-32 bg-secondary/20 rounded-full floating-delay-1"></div>
+        <div class="absolute bottom-20 left-1/4 w-24 h-24 bg-accent/20 rounded-full floating-delay-2"></div>
+        
+        <div class="container mx-auto px-6 relative z-10">
+            <div class="text-center" data-aos="fade-up">
+                <h1 class="text-5xl md:text-7xl font-bold mb-6">
+                    <span class="text-gradient">MOHAMMED SUFIYAN S</span>
+                </h1>
+                <div class="text-2xl md:text-3xl mb-8">
+                    <span id="typing-text" class="typing-effect"></span>
+                </div>
+                <p class="text-lg md:text-xl mb-12 max-w-3xl mx-auto text-gray-300">
+                    Passionate about building intelligent systems that bridge the gap between human creativity and machine intelligence
+                </p>
+                
+                <div class="flex flex-col sm:flex-row gap-6 justify-center mb-12">
+                    <a href="#contact" class="px-8 py-4 bg-primary text-white rounded-full hover:bg-primary/80 transform hover:scale-105 transition-all duration-300 glow-hover">
+                        <i class="fas fa-envelope mr-2"></i> Get In Touch
+                    </a>
+                    <a href="#" id="resume-download" class="px-8 py-4 border-2 border-primary text-primary rounded-full hover:bg-primary hover:text-white transform hover:scale-105 transition-all duration-300">
+                        <i class="fas fa-download mr-2"></i> Download Resume
+                    </a>
+                </div>
+                
+                <!-- Social Links -->
+                <div class="flex justify-center space-x-6">
+                    <a href="https://github.com/mohammedsufiyan" target="_blank" class="text-2xl hover:text-primary transform hover:scale-125 transition-all duration-300">
+                        <i class="fab fa-github"></i>
+                    </a>
+                    <a href="https://linkedin.com/in/mohammedsufiyan" target="_blank" class="text-2xl hover:text-primary transform hover:scale-125 transition-all duration-300">
+                        <i class="fab fa-linkedin"></i>
+                    </a>
+                    <a href="https://leetcode.com/mohammedsufiyan" target="_blank" class="text-2xl hover:text-primary transform hover:scale-125 transition-all duration-300">
+                        <i class="fas fa-code"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+        
+        <div class="absolute bottom-10 left-1/2 transform -translate-x-1/2 animate-bounce">
+            <i class="fas fa-chevron-down text-2xl"></i>
+        </div>
+    </section>
+    
+    <!-- Stats Section -->
+    <section class="py-20 bg-gradient-to-r from-primary/10 to-secondary/10">
+        <div class="container mx-auto px-6">
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-8">
+                <div class="text-center" data-aos="fade-up" data-aos-delay="100">
+                    <div class="text-4xl md:text-5xl font-bold text-gradient counter" data-target="10">0</div>
+                    <p class="text-gray-400 mt-2">Projects Completed</p>
+                </div>
+                <div class="text-center" data-aos="fade-up" data-aos-delay="200">
+                    <div class="text-4xl md:text-5xl font-bold text-gradient counter" data-target="5">0</div>
+                    <p class="text-gray-400 mt-2">Internships</p>
+                </div>
+                <div class="text-center" data-aos="fade-up" data-aos-delay="300">
+                    <div class="text-4xl md:text-5xl font-bold text-gradient counter" data-target="8">0</div>
+                    <p class="text-gray-400 mt-2">Certifications</p>
+                </div>
+                <div class="text-center" data-aos="fade-up" data-aos-delay="400">
+                    <div class="text-4xl md:text-5xl font-bold text-gradient">8.45</div>
+                    <p class="text-gray-400 mt-2">GPA</p>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- About Section -->
+    <section id="about" class="py-20 px-6">
+        <div class="container mx-auto">
+            <h2 class="text-4xl md:text-5xl font-bold text-center mb-16 text-gradient" data-aos="fade-up">
+                About Me
+            </h2>
+            
+            <div class="grid md:grid-cols-2 gap-12 items-center">
+                <div data-aos="fade-right">
+                    <div class="relative">
+                        <img src="https://picsum.photos/seed/sufiyan/500/600.jpg" alt="Profile" class="rounded-2xl shadow-2xl">
+                        <div class="absolute -bottom-6 -right-6 w-32 h-32 bg-primary rounded-full flex items-center justify-center floating">
+                            <span class="text-2xl font-bold">ML Engineer</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div data-aos="fade-left">
+                    <h3 class="text-3xl font-bold mb-6 text-gradient">Computer Science Engineer</h3>
+                    <p class="text-gray-300 mb-6 leading-relaxed">
+                        I'm a passionate Computer Science Engineering student at Sri Sai Ram Institute of Technology with a deep fascination for artificial intelligence and machine learning. My journey into tech began with a curiosity about how machines can learn and make decisions, leading me to specialize in computer vision and deep learning.
+                    </p>
+                    <p class="text-gray-300 mb-8 leading-relaxed">
+                        With hands-on experience in developing CNN models for forest fire detection and creating intelligent systems using LiDAR sensors, I've developed a strong foundation in both theoretical concepts and practical applications. I believe in leveraging technology to solve real-world problems and create impactful solutions.
+                    </p>
+                    
+                    <div class="grid grid-cols-2 gap-4 mb-8">
+                        <div class="flex items-center space-x-3">
+                            <i class="fas fa-graduation-cap text-primary text-xl"></i>
+                            <span class="text-gray-300">B.E Computer Science</span>
+                        </div>
+                        <div class="flex items-center space-x-3">
+                            <i class="fas fa-brain text-primary text-xl"></i>
+                            <span class="text-gray-300">ML Enthusiast</span>
+                        </div>
+                        <div class="flex items-center space-x-3">
+                            <i class="fas fa-code text-primary text-xl"></i>
+                            <span class="text-gray-300">Full Stack Developer</span>
+                        </div>
+                        <div class="flex items-center space-x-3">
+                            <i class="fas fa-eye text-primary text-xl"></i>
+                            <span class="text-gray-300">Computer Vision</span>
+                        </div>
+                    </div>
+                    
+                    <a href="#contact" class="inline-block px-8 py-3 bg-gradient-to-r from-primary to-secondary text-white rounded-full hover:shadow-2xl transform hover:scale-105 transition-all duration-300">
+                        Let's Connect <i class="fas fa-arrow-right ml-2"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Skills Section -->
+    <section id="skills" class="py-20 px-6 bg-gradient-to-b from-transparent to-primary/5">
+        <div class="container mx-auto">
+            <h2 class="text-4xl md:text-5xl font-bold text-center mb-16 text-gradient" data-aos="fade-up">
+                Technical Skills
+            </h2>
+            
+            <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
+                <!-- Python -->
+                <div class="skill-card glass-dark rounded-xl p-6 hover:shadow-2xl" data-aos="zoom-in" data-aos-delay="100">
+                    <div class="skill-card-inner flex flex-col items-center">
+                        <i class="fab fa-python text-5xl text-yellow-400 mb-4"></i>
+                        <h3 class="text-xl font-semibold mb-2">Python</h3>
+                        <div class="w-full bg-gray-700 rounded-full h-2 overflow-hidden">
+                            <div class="progress-fill bg-gradient-to-r from-yellow-400 to-yellow-600 h-2 rounded-full" style="width: 90%"></div>
+                        </div>
+                        <span class="text-sm text-gray-400 mt-2">Expert</span>
+                    </div>
+                </div>
+                
+                <!-- Machine Learning -->
+                <div class="skill-card glass-dark rounded-xl p-6 hover:shadow-2xl" data-aos="zoom-in" data-aos-delay="200">
+                    <div class="skill-card-inner flex flex-col items-center">
+                        <i class="fas fa-brain text-5xl text-primary mb-4"></i>
+                        <h3 class="text-xl font-semibold mb-2">Machine Learning</h3>
+                        <div class="w-full bg-gray-700 rounded-full h-2 overflow-hidden">
+                            <div class="progress-fill bg-gradient-to-r from-primary to-primary/80 h-2 rounded-full" style="width: 85%"></div>
+                        </div>
+                        <span class="text-sm text-gray-400 mt-2">Advanced</span>
+                    </div>
+                </div>
+                
+                <!-- TensorFlow -->
+                <div class="skill-card glass-dark rounded-xl p-6 hover:shadow-2xl" data-aos="zoom-in" data-aos-delay="300">
+                    <div class="skill-card-inner flex flex-col items-center">
+                        <i class="fas fa-cube text-5xl text-orange-500 mb-4"></i>
+                        <h3 class="text-xl font-semibold mb-2">TensorFlow</h3>
+                        <div class="w-full bg-gray-700 rounded-full h-2 overflow-hidden">
+                            <div class="progress-fill bg-gradient-to-r from-orange-400 to-orange-600 h-2 rounded-full" style="width: 80%"></div>
+                        </div>
+                        <span class="text-sm text-gray-400 mt-2">Advanced</span>
+                    </div>
+                </div>
+                
+                <!-- OpenCV -->
+                <div class="skill-card glass-dark rounded-xl p-6 hover:shadow-2xl" data-aos="zoom-in" data-aos-delay="400">
+                    <div class="skill-card-inner flex flex-col items-center">
+                        <i class="fas fa-eye text-5xl text-secondary mb-4"></i>
+                        <h3 class="text-xl font-semibold mb-2">OpenCV</h3>
+                        <div class="w-full bg-gray-700 rounded-full h-2 overflow-hidden">
+                            <div class="progress-fill bg-gradient-to-r from-secondary to-secondary/80 h-2 rounded-full" style="width: 80%"></div>
+                        </div>
+                        <span class="text-sm text-gray-400 mt-2">Advanced</span>
+                    </div>
+                </div>
+                
+                <!-- Java -->
+                <div class="skill-card glass-dark rounded-xl p-6 hover:shadow-2xl" data-aos="zoom-in" data-aos-delay="500">
+                    <div class="skill-card-inner flex flex-col items-center">
+                        <i class="fab fa-java text-5xl text-red-500 mb-4"></i>
+                        <h3 class="text-xl font-semibold mb-2">Java</h3>
+                        <div class="w-full bg-gray-700 rounded-full h-2 overflow-hidden">
+                            <div class="progress-fill bg-gradient-to-r from-red-400 to-red-600 h-2 rounded-full" style="width: 85%"></div>
+                        </div>
+                        <span class="text-sm text-gray-400 mt-2">Advanced</span>
+                    </div>
+                </div>
+                
+                <!-- JavaScript -->
+                <div class="skill-card glass-dark rounded-xl p-6 hover:shadow-2xl" data-aos="zoom-in" data-aos-delay="600">
+                    <div class="skill-card-inner flex flex-col items-center">
+                        <i class="fab fa-js text-5xl text-yellow-300 mb-4"></i>
+                        <h3 class="text-xl font-semibold mb-2">JavaScript</h3>
+                        <div class="w-full bg-gray-700 rounded-full h-2 overflow-hidden">
+                            <div class="progress-fill bg-gradient-to-r from-yellow-300 to-yellow-500 h-2 rounded-full" style="width: 85%"></div>
+                        </div>
+                        <span class="text-sm text-gray-400 mt-2">Advanced</span>
+                    </div>
+                </div>
+                
+                <!-- SQL -->
+                <div class="skill-card glass-dark rounded-xl p-6 hover:shadow-2xl" data-aos="zoom-in" data-aos-delay="700">
+                    <div class="skill-card-inner flex flex-col items-center">
+                        <i class="fas fa-database text-5xl text-accent mb-4"></i>
+                        <h3 class="text-xl font-semibold mb-2">SQL</h3>
+                        <div class="w-full bg-gray-700 rounded-full h-2 overflow-hidden">
+                            <div class="progress-fill bg-gradient-to-r from-accent to-accent/80 h-2 rounded-full" style="width: 82%"></div>
+                        </div>
+                        <span class="text-sm text-gray-400 mt-2">Intermediate</span>
+                    </div>
+                </div>
+                
+                <!-- YOLO -->
+                <div class="skill-card glass-dark rounded-xl p-6 hover:shadow-2xl" data-aos="zoom-in" data-aos-delay="800">
+                    <div class="skill-card-inner flex flex-col items-center">
+                        <i class="fas fa-bullseye text-5xl text-indigo-500 mb-4"></i>
+                        <h3 class="text-xl font-semibold mb-2">YOLO</h3>
+                        <div class="w-full bg-gray-700 rounded-full h-2 overflow-hidden">
+                            <div class="progress-fill bg-gradient-to-r from-indigo-400 to-indigo-600 h-2 rounded-full" style="width: 75%"></div>
+                        </div>
+                        <span class="text-sm text-gray-400 mt-2">Intermediate</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Projects Section -->
+    <section id="projects" class="py-20 px-6">
+        <div class="container mx-auto">
+            <h2 class="text-4xl md:text-5xl font-bold text-center mb-16 text-gradient" data-aos="fade-up">
+                Featured Projects
+            </h2>
+            
+            <!-- Project Filter -->
+            <div class="flex justify-center mb-12" data-aos="fade-up">
+                <div class="inline-flex rounded-full bg-gray-800 p-1">
+                    <button class="filter-btn px-6 py-2 rounded-full bg-primary text-white transition-all duration-300" data-filter="all">All</button>
+                    <button class="filter-btn px-6 py-2 rounded-full hover:bg-gray-700 transition-all duration-300" data-filter="ml">ML</button>
+                    <button class="filter-btn px-6 py-2 rounded-full hover:bg-gray-700 transition-all duration-300" data-filter="web">Web</button>
+                </div>
+            </div>
+            
+            <div class="grid md:grid-cols-2 gap-8">
+                <!-- Project 1 -->
+                <div class="project-card" data-aos="flip-left" data-category="ml">
+                    <div class="project-card-inner glass-dark rounded-xl overflow-hidden hover:shadow-2xl">
+                        <div class="relative">
+                            <img src="https://picsum.photos/seed/lidar/600/400.jpg" alt="LiDAR Project" class="w-full h-64 object-cover">
+                            <div class="absolute top-4 right-4 px-4 py-2 bg-primary/90 rounded-full text-sm">
+                                Machine Learning
+                            </div>
+                        </div>
+                        <div class="p-8">
+                            <h3 class="text-2xl font-bold mb-4 text-gradient">Vehicles & Obstacles Detection in Fog</h3>
+                            <p class="text-gray-300 mb-6">
+                                An intelligent system combining LiDAR sensor data with YOLOv8 for real-time object detection in adverse weather conditions, enhancing vehicle safety.
+                            </p>
+                            <div class="flex flex-wrap gap-2 mb-6">
+                                <span class="px-3 py-1 bg-primary/20 text-primary rounded-full text-sm">YOLOv8</span>
+                                <span class="px-3 py-1 bg-secondary/20 text-secondary rounded-full text-sm">OpenCV</span>
+                                <span class="px-3 py-1 bg-accent/20 text-accent rounded-full text-sm">LiDAR</span>
+                                <span class="px-3 py-1 bg-primary/20 text-primary rounded-full text-sm">Arduino</span>
+                            </div>
+                            <div class="flex space-x-4">
+                                <a href="#" class="flex items-center text-primary hover:text-primary/80 transition-colors">
+                                    <i class="fab fa-github mr-2"></i> View Code
+                                </a>
+                                <a href="#" class="flex items-center text-primary hover:text-primary/80 transition-colors">
+                                    <i class="fas fa-external-link-alt mr-2"></i> Live Demo
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Project 2 -->
+                <div class="project-card" data-aos="flip-right" data-category="ml">
+                    <div class="project-card-inner glass-dark rounded-xl overflow-hidden hover:shadow-2xl">
+                        <div class="relative">
+                            <img src="https://picsum.photos/seed/forestfire/600/400.jpg" alt="Forest Fire Detection" class="w-full h-64 object-cover">
+                            <div class="absolute top-4 right-4 px-4 py-2 bg-primary/90 rounded-full text-sm">
+                                Deep Learning
+                            </div>
+                        </div>
+                        <div class="p-8">
+                            <h3 class="text-2xl font-bold mb-4 text-gradient">Forest Fire Detection System</h3>
+                            <p class="text-gray-300 mb-6">
+                                Custom CNN model trained on satellite imagery for early forest fire detection with high accuracy, enabling rapid response to prevent disasters.
+                            </p>
+                            <div class="flex flex-wrap gap-2 mb-6">
+                                <span class="px-3 py-1 bg-primary/20 text-primary rounded-full text-sm">TensorFlow</span>
+                                <span class="px-3 py-1 bg-secondary/20 text-secondary rounded-full text-sm">Keras</span>
+                                <span class="px-3 py-1 bg-accent/20 text-accent rounded-full text-sm">Python</span>
+                                <span class="px-3 py-1 bg-primary/20 text-primary rounded-full text-sm">OpenCV</span>
+                            </div>
+                            <div class="flex space-x-4">
+                                <a href="#" class="flex items-center text-primary hover:text-primary/80 transition-colors">
+                                    <i class="fab fa-github mr-2"></i> View Code
+                                </a>
+                                <a href="#" class="flex items-center text-primary hover:text-primary/80 transition-colors">
+                                    <i class="fas fa-external-link-alt mr-2"></i> Live Demo
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Experience Section -->
+    <section id="experience" class="py-20 px-6 bg-gradient-to-b from-transparent to-secondary/5">
+        <div class="container mx-auto">
+            <h2 class="text-4xl md:text-5xl font-bold text-center mb-16 text-gradient" data-aos="fade-up">
+                Experience & Journey
+            </h2>
+            
+            <div class="max-w-4xl mx-auto">
+                <div class="relative">
+                    <!-- Timeline Line -->
+                    <div class="absolute left-1/2 transform -translate-x-1/2 h-full w-1 timeline-line"></div>
+                    
+                    <!-- Experience 1 -->
+                    <div class="flex items-center mb-12" data-aos="fade-right">
+                        <div class="w-full md:w-1/2 pr-8 text-right">
+                            <div class="glass-dark rounded-xl p-6 inline-block text-left hover:shadow-2xl transition-all duration-300">
+                                <div class="text-sm text-primary mb-2">Apr 2025 - May 2025</div>
+                                <h3 class="text-xl font-bold mb-2">Machine Learning Intern</h3>
+                                <h4 class="text-secondary mb-3">Edunet Foundation</h4>
+                                <p class="text-gray-300">
+                                    Developed optimized CNN models for forest fire detection using satellite imagery. Implemented data augmentation techniques and achieved high classification accuracy.
+                                </p>
+                            </div>
+                        </div>
+                        <div class="absolute left-1/2 transform -translate-x-1/2 w-6 h-6 bg-primary rounded-full border-4 border-gray-900 glow"></div>
+                        <div class="w-full md:w-1/2 pl-8"></div>
+                    </div>
+                    
+                    <!-- Experience 2 -->
+                    <div class="flex items-center mb-12" data-aos="fade-left">
+                        <div class="w-full md:w-1/2 pr-8"></div>
+                        <div class="absolute left-1/2 transform -translate-x-1/2 w-6 h-6 bg-secondary rounded-full border-4 border-gray-900 glow"></div>
+                        <div class="w-full md:w-1/2 pl-8">
+                            <div class="glass-dark rounded-xl p-6 inline-block hover:shadow-2xl transition-all duration-300">
+                                <div class="text-sm text-secondary mb-2">Sep 2024 - Oct 2024</div>
+                                <h3 class="text-xl font-bold mb-2">Frontend Intern</h3>
+                                <h4 class="text-primary mb-3">Techoctanet Services Pvt. Ltd.</h4>
+                                <p class="text-gray-300">
+                                    Created responsive landing pages with dynamic navigation menus using AJAX. Implemented interactive features and optimized user experience.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Education -->
+                    <div class="flex items-center mb-12" data-aos="fade-right">
+                        <div class="w-full md:w-1/2 pr-8 text-right">
+                            <div class="glass-dark rounded-xl p-6 inline-block text-left hover:shadow-2xl transition-all duration-300">
+                                <div class="text-sm text-accent mb-2">2022 - 2026</div>
+                                <h3 class="text-xl font-bold mb-2">B.E Computer Science</h3>
+                                <h4 class="text-accent mb-3">Sri Sai Ram Institute of Technology</h4>
+                                <p class="text-gray-300">
+                                    GPA: 8.45/10.0<br>
+                                    Specializing in Machine Learning and AI
+                                </p>
+                            </div>
+                        </div>
+                        <div class="absolute left-1/2 transform -translate-x-1/2 w-6 h-6 bg-accent rounded-full border-4 border-gray-900 glow"></div>
+                        <div class="w-full md:w-1/2 pl-8"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Certifications Section -->
+    <section class="py-20 px-6">
+        <div class="container mx-auto">
+            <h2 class="text-4xl md:text-5xl font-bold text-center mb-16 text-gradient" data-aos="fade-up">
+                Certifications
+            </h2>
+            
+            <div class="grid md:grid-cols-3 gap-8">
+                <div class="glass-dark rounded-xl p-6 hover:shadow-2xl transition-all duration-300" data-aos="zoom-in">
+                    <div class="text-center">
+                        <i class="fas fa-graduation-cap text-4xl text-primary mb-4"></i>
+                        <h3 class="text-xl font-bold mb-4">NPTEL</h3>
+                        <ul class="text-gray-300 space-y-2">
+                            <li>• IoT (85%)</li>
+                            <li>• Python for Data Science (67%)</li>
+                            <li>• Software Design (70%)</li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <div class="glass-dark rounded-xl p-6 hover:shadow-2xl transition-all duration-300" data-aos="zoom-in" data-aos-delay="100">
+                    <div class="text-center">
+                        <i class="fas fa-certificate text-4xl text-secondary mb-4"></i>
+                        <h3 class="text-xl font-bold mb-4">CISCO NETACAD</h3>
+                        <ul class="text-gray-300 space-y-2">
+                            <li>• Data Science</li>
+                            <li>• Cyber Security</li>
+                            <li>• Python Essentials</li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <div class="glass-dark rounded-xl p-6 hover:shadow-2xl transition-all duration-300" data-aos="zoom-in" data-aos-delay="200">
+                    <div class="text-center">
+                        <i class="fas fa-award text-4xl text-accent mb-4"></i>
+                        <h3 class="text-xl font-bold mb-4">PWC</h3>
+                        <ul class="text-gray-300 space-y-2">
+                            <li>• Technology Managed Services</li>
+                            <li>• Launchpad 2025</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Contact Section -->
+    <section id="contact" class="py-20 px-6 bg-gradient-to-b from-transparent to-primary/10">
+        <div class="container mx-auto max-w-4xl">
+            <h2 class="text-4xl md:text-5xl font-bold text-center mb-16 text-gradient" data-aos="fade-up">
+                Let's Connect
+            </h2>
+            
+            <div class="grid md:grid-cols-2 gap-12">
+                <!-- Contact Info -->
+                <div data-aos="fade-right">
+                    <h3 class="text-2xl font-bold mb-8">Get In Touch</h3>
+                    <p class="text-gray-300 mb-8">
+                        I'm always excited to collaborate on innovative projects and discuss opportunities in machine learning, computer vision, and full-stack development.
+                    </p>
+                    
+                    <div class="space-y-6">
+                        <div class="flex items-center space-x-4 hover:translate-x-2 transition-transform duration-300">
+                            <div class="w-12 h-12 bg-primary/20 rounded-full flex items-center justify-center">
+                                <i class="fas fa-envelope text-primary"></i>
+                            </div>
+                            <div>
+                                <p class="text-sm text-gray-400">Email</p>
+                                <a href="mailto:mohammedsufiyan1235@gmail.com" class="text-primary hover:underline">
+                                    mohammedsufiyan1235@gmail.com
+                                </a>
+                            </div>
+                        </div>
+                        
+                        <div class="flex items-center space-x-4 hover:translate-x-2 transition-transform duration-300">
+                            <div class="w-12 h-12 bg-secondary/20 rounded-full flex items-center justify-center">
+                                <i class="fas fa-phone text-secondary"></i>
+                            </div>
+                            <div>
+                                <p class="text-sm text-gray-400">Phone</p>
+                                <a href="tel:+919150595625" class="text-secondary hover:underline">
+                                    +91 9150595625
+                                </a>
+                            </div>
+                        </div>
+                        
+                        <div class="flex items-center space-x-4 hover:translate-x-2 transition-transform duration-300">
+                            <div class="w-12 h-12 bg-accent/20 rounded-full flex items-center justify-center">
+                                <i class="fab fa-linkedin text-accent"></i>
+                            </div>
+                            <div>
+                                <p class="text-sm text-gray-400">LinkedIn</p>
+                                <a href="https://linkedin.com/in/mohammedsufiyan" target="_blank" class="text-accent hover:underline">
+                                    linkedin.com/in/mohammedsufiyan
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Contact Form -->
+                <div data-aos="fade-left">
+                    <form id="contact-form" class="space-y-6">
+                        <div>
+                            <input type="text" id="name" name="name" placeholder="Your Name" required 
+                                class="w-full px-4 py-3 bg-gray-800 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary transition-all duration-300">
+                        </div>
+                        <div>
+                            <input type="email" id="email" name="email" placeholder="Your Email" required 
+                                class="w-full px-4 py-3 bg-gray-800 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary transition-all duration-300">
+                        </div>
+                        <div>
+                            <textarea id="message" name="message" rows="4" placeholder="Your Message" required 
+                                class="w-full px-4 py-3 bg-gray-800 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary transition-all duration-300"></textarea>
+                        </div>
+                        <button type="submit" class="w-full px-6 py-3 bg-gradient-to-r from-primary to-secondary text-white rounded-lg hover:shadow-2xl transform hover:scale-105 transition-all duration-300">
+                            Send Message <i class="fas fa-paper-plane ml-2"></i>
+                        </button>
+                    </form>
+                    <div id="form-message" class="mt-4 hidden p-4 rounded-lg"></div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Footer -->
+    <footer class="py-12 px-6 bg-gray-900 border-t border-gray-800">
+        <div class="container mx-auto">
+            <div class="flex flex-col md:flex-row justify-between items-center">
+                <div class="mb-4 md:mb-0">
+                    <p class="text-gray-400">© 2024 MOHAMMED SUFIYAN S. All rights reserved.</p>
+                </div>
+                <div class="flex space-x-6">
+                    <a href="https://github.com/mohammedsufiyan" target="_blank" class="text-gray-400 hover:text-primary transform hover:scale-125 transition-all duration-300">
+                        <i class="fab fa-github text-xl"></i>
+                    </a>
+                    <a href="https://linkedin.com/in/mohammedsufiyan" target="_blank" class="text-gray-400 hover:text-primary transform hover:scale-125 transition-all duration-300">
+                        <i class="fab fa-linkedin text-xl"></i>
+                    </a>
+                    <a href="https://leetcode.com/mohammedsufiyan" target="_blank" class="text-gray-400 hover:text-primary transform hover:scale-125 transition-all duration-300">
+                        <i class="fas fa-code text-xl"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </footer>
+    
+    <!-- Back to Top Button -->
+    <button id="back-to-top" class="fixed bottom-8 right-8 w-12 h-12 bg-primary rounded-full flex items-center justify-center opacity-0 pointer-events-none transition-all duration-300 hover:scale-110">
+        <i class="fas fa-arrow-up"></i>
+    </button>
+    
+    <!-- Scripts -->
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script>
+        // Initialize AOS
+        AOS.init({
+            duration: 1000,
+            once: true,
+            offset: 100
+        });
+        
+        // Loading Screen
+        window.addEventListener('load', () => {
+            setTimeout(() => {
+                document.getElementById('loader').classList.add('hidden');
+            }, 1000);
+        });
+        
+        // Custom Cursor
+        const cursor = document.getElementById('cursor');
+        const cursorFollower = document.getElementById('cursor-follower');
+        
+        document.addEventListener('mousemove', (e) => {
+            cursor.style.left = e.clientX + 'px';
+            cursor.style.top = e.clientY + 'px';
+            
+            setTimeout(() => {
+                cursorFollower.style.left = e.clientX - 10 + 'px';
+                cursorFollower.style.top = e.clientY - 10 + 'px';
+            }, 100);
+        });
+        
+        // Add hover effect to cursor
+        const hoverElements = document.querySelectorAll('a, button, .skill-card, .project-card');
+        hoverElements.forEach(element => {
+            element.addEventListener('mouseenter', () => cursor.classList.add('hover'));
+            element.addEventListener('mouseleave', () => cursor.classList.remove('hover'));
+        });
+        
+        // Typing Effect
+        const typingTexts = [
+            'Machine Learning Engineer',
+            'Computer Vision Specialist',
+            'Full Stack Developer',
+            'AI Enthusiast'
+        ];
+        let textIndex = 0;
+        let charIndex = 0;
+        let isDeleting = false;
+        
+        function typeText() {
+            const currentText = typingTexts[textIndex];
+            const typingElement = document.getElementById('typing-text');
+            
+            if (!isDeleting) {
+                typingElement.textContent = currentText.substring(0, charIndex + 1);
+                charIndex++;
+                
+                if (charIndex === currentText.length) {
+                    isDeleting = true;
+                    setTimeout(typeText, 2000);
+                    return;
+                }
+            } else {
+                typingElement.textContent = currentText.substring(0, charIndex - 1);
+                charIndex--;
+                
+                if (charIndex === 0) {
+                    isDeleting = false;
+                    textIndex = (textIndex + 1) % typingTexts.length;
+                }
+            }
+            
+            setTimeout(typeText, isDeleting ? 50 : 100);
+        }
+        
+        typeText();
+        
+        // Mobile Menu Toggle
+        const mobileMenuToggle = document.getElementById('mobile-menu-toggle');
+        const mobileMenu = document.getElementById('mobile-menu');
+        
+        mobileMenuToggle.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
+        });
+        
+        // Smooth Scrolling
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const targetId = this.getAttribute('href');
+                const targetElement = document.querySelector(targetId);
+                
+                if (targetElement) {
+                    const offsetTop = targetElement.offsetTop - 80;
+                    window.scrollTo({
+                        top: offsetTop,
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+        
+        // Scroll Progress Bar
+        window.addEventListener('scroll', () => {
+            const scrollTop = window.scrollY;
+            const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+            const scrollPercent = (scrollTop / docHeight) * 100;
+            document.getElementById('nav-progress').style.width = scrollPercent + '%';
+            
+            // Back to Top Button
+            const backToTop = document.getElementById('back-to-top');
+            if (scrollTop > 300) {
+                backToTop.classList.remove('opacity-0', 'pointer-events-none');
+                backToTop.classList.add('opacity-100');
+            } else {
+                backToTop.classList.add('opacity-0', 'pointer-events-none');
+                backToTop.classList.remove('opacity-100');
+            }
+        });
+        
+        // Back to Top
+        document.getElementById('back-to-top').addEventListener('click', () => {
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+        });
+        
+        // Counter Animation
+        const counters = document.querySelectorAll('.counter');
+        const speed = 200;
+        
+        const countUp = () => {
+            counters.forEach(counter => {
+                const target = +counter.getAttribute('data-target');
+                const count = +counter.innerText;
+                const increment = target / speed;
+                
+                if (count < target) {
+                    counter.innerText = Math.ceil(count + increment);
+                    setTimeout(countUp, 10);
+                } else {
+                    counter.innerText = target;
+                }
+            });
+        };
+        
+        // Trigger counter animation when in view
+        const observerOptions = {
+            threshold: 0.5
+        };
+        
+        const counterObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    countUp();
+                    counterObserver.unobserve(entry.target);
+                }
+            });
+        }, observerOptions);
+        
+        counters.forEach(counter => {
+            counterObserver.observe(counter.parentElement);
+        });
+        
+        // Contact Form
+        document.getElementById('contact-form').addEventListener('submit', (e) => {
+            e.preventDefault();
+            
+            const formMessage = document.getElementById('form-message');
+            const name = document.getElementById('name').value;
+            
+            formMessage.textContent = `Thank you for your message, ${name}! I'll get back to you soon.`;
+            formMessage.classList.remove('hidden', 'bg-red-500/20', 'text-red-400');
+            formMessage.classList.add('bg-green-500/20', 'text-green-400');
+            
+            document.getElementById('contact-form').reset();
+            
+            setTimeout(() => {
+                formMessage.classList.add('hidden');
+            }, 5000);
+        });
+        
+        // Resume Download
+        document.getElementById('resume-download').addEventListener('click', (e) => {
+            e.preventDefault();
+            alert('Resume download would start here. In a real application, this would link to an actual PDF file.');
+        });
+        
+        // Project Filter
+        const filterBtns = document.querySelectorAll('.filter-btn');
+        const projects = document.querySelectorAll('.project-card');
+        
+        filterBtns.forEach(btn => {
+            btn.addEventListener('click', () => {
+                // Update active button
+                filterBtns.forEach(b => {
+                    b.classList.remove('bg-primary', 'text-white');
+                    b.classList.add('hover:bg-gray-700');
+                });
+                btn.classList.add('bg-primary', 'text-white');
+                btn.classList.remove('hover:bg-gray-700');
+                
+                // Filter projects
+                const filter = btn.getAttribute('data-filter');
+                projects.forEach(project => {
+                    if (filter === 'all' || project.getAttribute('data-category') === filter) {
+                        project.style.display = 'block';
+                    } else {
+                        project.style.display = 'none';
+                    }
+                });
+            });
+        });
+        
+        // Particle Background (Simple Implementation)
+        function createParticles() {
+            const particlesContainer = document.getElementById('particles-js');
+            const particleCount = 50;
+            
+            for (let i = 0; i < particleCount; i++) {
+                const particle = document.createElement('div');
+                particle.className = 'absolute rounded-full bg-white/10';
+                particle.style.width = Math.random() * 5 + 'px';
+                particle.style.height = particle.style.width;
+                particle.style.left = Math.random() * 100 + '%';
+                particle.style.top = Math.random() * 100 + '%';
+                particle.style.animation = `float ${Math.random() * 10 + 10}s ease-in-out infinite`;
+                particle.style.animationDelay = Math.random() * 5 + 's';
+                particlesContainer.appendChild(particle);
+            }
+        }
+        
+        createParticles();
+        
+        // 3D Tilt Effect for Skill Cards
+        const skillCards = document.querySelectorAll('.skill-card');
+        
+        skillCards.forEach(card => {
+            card.addEventListener('mousemove', (e) => {
+                const rect = card.getBoundingClientRect();
+                const x = e.clientX - rect.left;
+                const y = e.clientY - rect.top;
+                
+                const centerX = rect.width / 2;
+                const centerY = rect.height / 2;
+                
+                const rotateX = (y - centerY) / 10;
+                const rotateY = (centerX - x) / 10;
+                
+                card.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) scale3d(1.05, 1.05, 1.05)`;
+            });
+            
+            card.addEventListener('mouseleave', () => {
+                card.style.transform = 'perspective(1000px) rotateX(0) rotateY(0) scale3d(1, 1, 1)';
+            });
+        });
+    </script>
+</body>
+</html>
